@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean name="book" class="task18.Book">
+        <constructor-arg name="nameProduct" value="War and piece"/>
+        <constructor-arg name="priceProduct" value="123"/>
+        <constructor-arg name="weightProduct" value="2"/>
+    </bean>
+
+    <bean name="shop" class="task18.Shop">
+        <constructor-arg value="10"/>
+    </bean>
+
+    <bean name="cakeFactory" class="task18.CakeFactory"/>
+
+    <bean name="buyProduct" class="task18.BuyProductService">
+        <constructor-arg ref="shop"/>
+    </bean>
+
+    <bean name="delivery" class="task18.DeliveryProductsService">
+        <constructor-arg ref="shop"/>
+    </bean>
+
+    <bean name="logger" class="task18.Logger"/>
+
+</beans>
