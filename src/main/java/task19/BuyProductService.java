@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Locale;
 
-
-public class BuyProductService  {
+@Service
+public class BuyProductService implements ApplicationContextAware {
     private Shop shop;
     private ApplicationContext context;
 
@@ -27,8 +27,9 @@ public class BuyProductService  {
                         "Ндс за покупку составит: " + (double) product.getPriceProduct() * 0.2)));
     }
 
-@Autowired
-    public void setApplicationContext(ConfigurableApplicationContext applicationContext) throws BeansException {
+    @Autowired
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;
     }
 }

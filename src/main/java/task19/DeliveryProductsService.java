@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Locale;
 
-
-public class DeliveryProductsService  {
+@Service
+public class DeliveryProductsService {
     private Shop shop;
-    ApplicationContext context;
+    ConfigurableApplicationContext context;
 
     public DeliveryProductsService(Shop shop) {
         this.shop = shop;

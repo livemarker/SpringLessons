@@ -6,13 +6,15 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
+import java.beans.ConstructorProperties;
+
 @SpringBootApplication
-@Import(Config.class)
+
 public class Application {
     public static void main(String[] args) throws ShopNotHaveThisProduct {
-        final ConfigurableApplicationContext context= SpringApplication.run(Application.class,args);
-        context.getBean(Book.class);
-       Book book =  context.getBean(Book.class);
+        final ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+
+        Book book = context.getBean(Book.class);
         Cake cake = context.getBean(CakeFactory.class).create();
         Cake cake1 = context.getBean(CakeFactory.class).create();
 
@@ -26,4 +28,13 @@ public class Application {
         bp.buy(book);
     }
 
+    @Bean
+    public Shop shop() {
+        return new Shop(10);
+    }
+
+    @Bean
+    public Book book() {
+        return new Book("war", 125, 2);
+    }
 }

@@ -1,10 +1,13 @@
 package task19;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.beans.ConstructorProperties;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Shop implements Serializable {
     private final int capacity;
