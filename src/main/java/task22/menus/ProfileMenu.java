@@ -55,7 +55,9 @@ public class ProfileMenu {
 
         System.out.println("Текущее телефон: " + user.getPhoneNumber() + " изменить на ");
         String phoneNumberTemp = sc.next();
+
         new ProfileMenuDAO().changeInfo(user, firstNameTemp, lastNameTemp, addressTemp, phoneNumberTemp);
+        user=new User(firstNameTemp,lastNameTemp,addressTemp,phoneNumberTemp);
     }
 
     private void delProfile() throws SQLException {
