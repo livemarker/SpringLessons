@@ -1,4 +1,4 @@
-package task22;
+package task22.entity;
 
 public class Product {
     private String name;

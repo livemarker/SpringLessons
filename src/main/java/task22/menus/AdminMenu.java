@@ -2,7 +2,6 @@ package task22.menus;
 
 
 import task22.DAO.ShopDAO;
-import task22.User;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

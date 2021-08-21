@@ -1,7 +1,6 @@
 package task22.DAO;
 
 import java.sql.*;
-import java.util.List;
 
 public class DBWorker {
     private Connection connection;
@@ -14,7 +13,6 @@ public class DBWorker {
     }
 
     private void init() throws SQLException {
-
         this.connection = DriverManager.getConnection(dburl, user, pass);
     }
 

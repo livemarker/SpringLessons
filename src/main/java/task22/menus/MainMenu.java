@@ -1,14 +1,13 @@
 package task22.menus;
 
-import task22.DAO.DBWorker;
 import task22.DAO.UserDAO;
-import task22.User;
+import task22.entity.User;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class MainMenu {
-    static private Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
     public static void run() throws SQLException {
         System.out.println("Добро пожаловать в ВТБ магазин");
@@ -21,11 +20,9 @@ public class MainMenu {
         int choice = sc.nextInt();
         if (choice == 1) {
             authorization();
-        }
-       else if (choice == 2) {
+        } else if (choice == 2) {
             registration();
-        }
-       else if (choice == 3) {
+        } else if (choice == 3) {
             System.exit(1);
         } else {
             System.out.println("Выберите правильный пункт меню");
@@ -43,7 +40,6 @@ public class MainMenu {
         String name = sc.next();
         System.out.println("Введите Фамилию: ");
         String lastName = sc.next();
-
         AccountMenu.create(new UserDAO(new User(name, lastName)).load()).run();
     }
 

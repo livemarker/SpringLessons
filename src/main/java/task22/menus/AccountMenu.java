@@ -1,7 +1,6 @@
 package task22.menus;
 
-import org.w3c.dom.ls.LSOutput;
-import task22.User;
+import task22.entity.User;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -23,31 +22,38 @@ public class AccountMenu {
     }
 
     public void run() throws SQLException {
-        accountWindow();
+        System.out.println("-------------------------");
+        System.out.println("Добро пожаловать " + user.getFirstName() + " " + user.getLastName());
         System.out.println();
         System.out.println("Меню аккаунта ");
         System.out.println("1.  Магазин");
         System.out.println("2.  Информация о профиле");
-        System.out.println("4.  Моя корзина");
-        System.out.println("5.  Мои заказы");
-        System.out.println("6.  Тех. поддержка");
-        System.out.println("7.  Админка");
+        System.out.println("3.  Моя корзина");
+        System.out.println("4.  Мои заказы");
+        System.out.println("5.  Тех. поддержка");
+        System.out.println("6.  Админка");
+        System.out.println();
+        System.out.println("Выход -1");
         int choice = sc.nextInt();
         if (choice == 1) {
             new ShopMenu(user).run();
         } else if (choice == 2) {
             new ProfileMenu(user).run();
         } else if (choice == 3) {
+            CartMenu.create(user).run();
         } else if (choice == 4) {
+            OrderMenu.create(user).run();
         } else if (choice == 5) {
+            SupportMenu.create(user).run();
         } else if (choice == 6) {
-        } else if (choice == 7) {
             if (user.getFirstName().equals("admin") && user.getLastName().equals("admin")) {
                 new AdminMenu().run();
             } else {
                 System.out.println("Вы не являетесь администратором, выберите другой пункт меню");
                 AccountMenu.create(user).run();
             }
+        } else if (choice == -1) {
+            System.exit(1);
         } else {
             System.out.println("Выберите правильный пункт меню");
             try {
@@ -57,11 +63,4 @@ public class AccountMenu {
             run();
         }
     }
-
-    private void accountWindow() {
-        System.out.println("-------------------------");
-        System.out.println("Добро пожаловать " + user.getFirstName() + " " + user.getLastName());
-    }
-
 }
-//CREATE TABLE users (id INT, Имя varchar, Фамилия varchar, Адрес varchar, Телефон varchar);

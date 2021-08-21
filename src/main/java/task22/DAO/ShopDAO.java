@@ -1,23 +1,21 @@
 package task22.DAO;
 
-import task22.Product;
+import task22.entity.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ShopDAO {
     private Connection connection = new DBWorker().getConnection();
-    private Scanner sc = new Scanner(System.in);
     private static ShopDAO shopDAO;
 
     private ShopDAO() throws SQLException {
     }
 
     public static ShopDAO create() throws SQLException {
-        if(shopDAO==null){
-            shopDAO=new ShopDAO();
+        if (shopDAO == null) {
+            shopDAO = new ShopDAO();
         }
         return shopDAO;
     }
@@ -103,7 +101,6 @@ public class ShopDAO {
             product = new Product(rs.getString(2), rs.getDouble(3), category);
             products.add(product);
         }
-
         return products;
     }
 }

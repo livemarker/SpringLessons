@@ -1,4 +1,4 @@
-package task22;
+package task22.entity;
 
 import task22.DAO.UserDAO;
 
@@ -21,6 +21,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
     public String getFirstName() {
         return firstName;
     }

@@ -1,16 +1,12 @@
 package task22.DAO;
 
-import task22.User;
+import task22.entity.User;
 import task22.menus.MainMenu;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.sql.*;
 
 public class UserDAO {
-    private DBWorker dbw = new DBWorker();
-    private Connection connection = dbw.getConnection();
+    private Connection connection = new DBWorker().getConnection();
     private User user;
 
     public UserDAO(User user) throws SQLException {
@@ -34,7 +30,9 @@ public class UserDAO {
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
 
-        String find = "SELECT *FROM users WHERE \"Имя\" = \'" + firstName + "\' AND \"Фамилия\" = \'" + lastName + "\';";
+        String find = "SELECT *FROM users WHERE \"Имя\" = \'" + firstName + "\' " +
+                "AND \"Фамилия\" = \'" + lastName + "\';";
+
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(find);
 
@@ -44,8 +42,7 @@ public class UserDAO {
             address = rs.getString(4);
             phoneNumber = rs.getString(5);
         }
-
-        if (address==null){
+        if (address == null) {
             System.out.println("Такого пользователя не существует");
             System.out.println("--------------------");
             MainMenu.run();
@@ -62,7 +59,6 @@ public class UserDAO {
         while (resultSet.next()) {
             return resultSet.getInt(1) + 1;
         }
-        return 0;
-
+        return 1;
     }
 }
