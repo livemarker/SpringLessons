@@ -21,38 +21,20 @@ public class ShopDAO {
     }
 
     public void add(String name, double price, String category) throws SQLException {
-        boolean updateFlag = true;
 
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT сategory FROM products");
-
-        String update = "INSERT INTO " + category + " values (?,?,?);";
-
-        while (resultSet.next()) {
-            if (resultSet.getString(1).equals(category)) {
-                PreparedStatement ps = connection.prepareStatement(update);
-                ps.setInt(1, generator(category));
-                ps.setString(2, name);
-                ps.setDouble(3, price);
-                ps.executeUpdate();
-                updateFlag = false;
-            }
-        }
-        if (updateFlag) {
-            String create =
-                    " CREATE TABLE " + category + "(id INT, name VARCHAR, price DECIMAL);" +
-                            " INSERT INTO " + category + " values (?,?,?);" +
-                            " INSERT INTO products values (?,?)";
-            PreparedStatement ps = connection.prepareStatement(create);
-
-            ps.setInt(1, 1);
-            ps.setString(2, name);
-            ps.setDouble(3, price);
-            ps.setInt(4, generator("products"));
-            ps.setString(5, category);
-            ps.executeUpdate();
-        }
+        String create =
+                " create table if not exists products (id INT, name VARCHAR, price DECIMAL, category varchar);";
+        String q = " INSERT INTO products values(?,?,?,?);";
+        PreparedStatement pss = connection.prepareStatement(create);
+        pss.executeUpdate();
+        PreparedStatement ps = connection.prepareStatement(q);
+        ps.setInt(1, generator("products"));
+        ps.setString(2, name);
+        ps.setDouble(3, price);
+        ps.setString(4, category);
+        ps.executeUpdate();
     }
+
 
     private int generator(String table) throws SQLException {
         String id = "id";
@@ -64,7 +46,6 @@ public class ShopDAO {
         ResultSet resultSet = ps.executeQuery();
 
         while (resultSet.next()) {
-
             return resultSet.getInt(1) + 1;
         }
         return 1;
@@ -74,31 +55,29 @@ public class ShopDAO {
         List<String> productsCategory = new ArrayList<>();
 
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("SELECT сategory FROM products");
+        ResultSet rs = statement.executeQuery("SELECT category FROM products");
 
         String category;
         while (rs.next()) {
             category = rs.getString(1);
             productsCategory.add(category);
         }
+
         return productsCategory;
     }
 
-    public List<Product> getProducts(int index) throws SQLException {
+    public List<Product> getProducts(String nameCategory) throws SQLException {
         List<Product> products = new ArrayList<>();
 
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("SELECT сategory FROM products WHERE id=" + index + ";");
-        String category = null;
+        ResultSet rs = statement.executeQuery("SELECT *FROM products WHERE category='" + nameCategory + "';");
 
-        while (rs.next()) {
-            category = rs.getString(1);
-        }
-        rs = statement.executeQuery("SELECT * FROM " + category + ";");
 
         Product product;
         while (rs.next()) {
-            product = new Product(rs.getString(2), rs.getDouble(3), category);
+            product = new Product(rs.getString(2)
+                    , rs.getDouble(3)
+                    , rs.getString(4));
             products.add(product);
         }
         return products;

@@ -12,6 +12,9 @@ public class MainMenu {
     public static void run() throws SQLException {
         System.out.println("Добро пожаловать в ВТБ магазин");
         System.out.println("Для совершения покупок, войдите в личный кабинет");
+        System.out.println("Управление осуществляется в консоли цифрами");
+        System.out.println("");
+
         System.out.println("1.  войти в аккаунт");
         System.out.println("2.  зарегистрироваться");
         System.out.println();

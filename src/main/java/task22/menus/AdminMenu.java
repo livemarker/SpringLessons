@@ -36,7 +36,7 @@ public class AdminMenu {
             }
         }
         if (choice == 2) {
-            MainMenu.run();
+
         }
     }
 }

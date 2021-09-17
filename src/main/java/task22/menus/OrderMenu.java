@@ -33,7 +33,7 @@ public class OrderMenu {
         System.out.println("Для возврата в меню аккаунта: -1");
         int choice = sc.nextInt();
         if (choice == -1) {
-            AccountMenu.create(user).run();
+
         } else {
             run();
         }

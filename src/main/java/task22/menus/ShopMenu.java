@@ -31,24 +31,24 @@ public class ShopMenu {
 
         List<String> listCategory = ShopDAO.create().getCategoryProducts();
         for (int i = 0; i < listCategory.size(); i++) {
-            System.out.println(i + 1 + ".    " + listCategory.get(i));
+            System.out.println(i + ".    " + listCategory.get(i));
         }
         System.out.println();
         System.out.println("Для перехода назад цифра -1");
 
         int choice = sc.nextInt();
         if (choice == -1) {
-            AccountMenu.create(user).run();
+
         } else {
-            getProducts(choice);
+            getProducts(listCategory.get(choice));
         }
     }
 
-    private void getProducts(int choiceCategory) throws SQLException {
+    private void getProducts(String choiceCategory) throws SQLException {
 
         listProductsTemp = ShopDAO.create().getProducts(choiceCategory);
         for (int i = 0; i < listProductsTemp.size(); i++) {
-            System.out.println(i + 1 + ".    " + listProductsTemp.get(i));
+            System.out.println(i + ".    " + listProductsTemp.get(i));
         }
         System.out.println();
         System.out.println("Для перехода назад цифра -1");
@@ -64,8 +64,8 @@ public class ShopMenu {
 
     private void addToCart(int index) throws SQLException {
 
-        CartMenu.create(user).getCart().add(listProductsTemp.get(index - 1));
-        System.out.println(listProductsTemp.get(index - 1).toString() + " добавлен в корзину");
+        CartMenu.create(user).getCart().add(listProductsTemp.get(index ));
+        System.out.println(listProductsTemp.get(index ).toString() + " добавлен в корзину");
         System.out.println();
     }
 }

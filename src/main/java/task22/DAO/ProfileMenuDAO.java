@@ -15,12 +15,12 @@ public class ProfileMenuDAO {
     public void changeInfo(User user, String firstNameTemp, String lastNameTemp,
                            String addressTemp, String phoneNumberTemp) throws SQLException {
 
-        String update = "UPDATE users SET  \"Имя\"= \'" + firstNameTemp + "\'," +
-                " \"Фамилия\" = \'" + lastNameTemp + "\'," +
-                " \"Адрес\" = \'" + addressTemp + "\'," +
-                " \"Телефон\" = \'" + phoneNumberTemp + "\' " +
-                "WHERE \"Имя\" = \'" + user.getFirstName() + "\'" +
-                " AND \"Фамилия\" = \'" + user.getLastName() + "\';";
+        String update = "UPDATE users SET  first_name= '" + firstNameTemp + "'," +
+                " last_name = \'" + lastNameTemp + "\'," +
+                " address = \'" + addressTemp + "\'," +
+                " phone_number = \'" + phoneNumberTemp + "\' " +
+                "WHERE first_name = \'" + user.getFirstName() + "\'" +
+                " AND last_name = \'" + user.getLastName() + "\';";
 
         PreparedStatement ps = connection.prepareStatement(update);
         ps.executeUpdate();
@@ -29,12 +29,12 @@ public class ProfileMenuDAO {
 
     public void delProfile(User user) throws SQLException {
 
-        String delete = "DELETE FROM users WHERE \"Имя\" = \'" + user.getFirstName() + "\' " +
-                "AND \"Фамилия\" = \'" + user.getLastName() + "\';";
+        String delete = "DELETE FROM users WHERE first_name = \'" + user.getFirstName() + "\' " +
+                "AND last_name = \'" + user.getLastName() + "\';";
 
         PreparedStatement ps = connection.prepareStatement(delete);
         ps.executeUpdate();
-        MainMenu.run();
+
     }
 }
 

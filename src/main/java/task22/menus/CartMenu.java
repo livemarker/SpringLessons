@@ -43,9 +43,9 @@ public class CartMenu {
             System.out.println("Товары оплачены, сформирован заказ");
         } else if (choice == 2) {
             clear();
-            AccountMenu.create(user).run();
+
         } else if (choice == -1) {
-            AccountMenu.create(user).run();
+
         } else {
             System.out.println("Выберите правильный пункт меню");
             try {

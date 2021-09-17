@@ -30,8 +30,8 @@ public class UserDAO {
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
 
-        String find = "SELECT *FROM users WHERE \"Имя\" = \'" + firstName + "\' " +
-                "AND \"Фамилия\" = \'" + lastName + "\';";
+        String find = "SELECT *FROM users WHERE first_name = \'" + firstName + "\' " +
+                "AND last_name = \'" + lastName + "\';";
 
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(find);

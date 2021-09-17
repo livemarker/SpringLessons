@@ -50,6 +50,11 @@ public class AccountMenu {
                 new AdminMenu().run();
             } else {
                 System.out.println("Вы не являетесь администратором, выберите другой пункт меню");
+                try {
+                    Thread.sleep(200);
+                } catch (Exception e) {
+                }
+
                 AccountMenu.create(user).run();
             }
         } else if (choice == -1) {
@@ -60,7 +65,8 @@ public class AccountMenu {
                 Thread.sleep(200);
             } catch (Exception e) {
             }
-            run();
+
         }
+        run();
     }
 }

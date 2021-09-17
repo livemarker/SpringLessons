@@ -1,0 +1,46 @@
+create table orders
+(
+    order_number integer,
+    name_product varchar,
+    price        numeric,
+    category     varchar,
+    first_name   varchar,
+    last_name    varchar,
+    status       varchar
+);
+
+INSERT INTO public.orders (order_number, name_product, price, category, first_name, last_name, status) VALUES (1, 'soap', 13, 'soap', 'q', 'q', 'Подготовка к отправке');
+
+
+
+
+
+
+
+create table users
+(
+    id           integer,
+    first_name   varchar,
+    last_name    varchar,
+    address      varchar,
+    phone_number varchar
+);
+
+INSERT INTO public.users (id, first_name, last_name, address, phone_number) VALUES (1, 'q', 'q', 'qwe', 'qwe');
+
+
+
+
+
+
+create table products
+(
+    id       integer,
+    name     varchar,
+    price    numeric,
+    category varchar
+);
+
+INSERT INTO public.products (id, name, price, category) VALUES (3, 'book', 14, 'book');
+INSERT INTO public.products (id, name, price, category) VALUES (2, 'soap', 13, 'soap');
+INSERT INTO public.products (id, name, price, category) VALUES (1, 'cake', 12, 'cake');
